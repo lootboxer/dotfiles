@@ -5,7 +5,7 @@ return {
   opts = {
     projects = config.projects or {},
     picker = {
-      type = 'telescope', -- one of "telescope", "fzf-lua", or "snacks"
+      type = 'telescope',
     },
     -- Last project configuration
     last_session_on_startup = true, -- automatically load last project on startup
@@ -18,12 +18,7 @@ return {
   end,
   dependencies = {
     { 'nvim-lua/plenary.nvim' },
-    -- optional picker
     { 'nvim-telescope/telescope.nvim', tag = '0.1.4' },
-    -- optional picker
-    { 'ibhagwan/fzf-lua' },
-    -- optional picker
-    -- { 'folke/snacks.nvim' },
     { 'Shatur/neovim-session-manager' },
   },
   lazy = false,
