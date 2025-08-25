@@ -1,4 +1,4 @@
-local envs = require 'custom.envs.obsidian'
+local envs = require 'envs.obsidian'
 
 return {
   'epwalsh/obsidian.nvim',
