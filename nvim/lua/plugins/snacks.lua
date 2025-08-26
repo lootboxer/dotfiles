@@ -1,100 +1,103 @@
 return {
-  'folke/snacks.nvim',
-  priority = 1000,
-  lazy = false,
-  ---@type snacks.Config
-  opts = {
-    bigfile = { enabled = true },
-    bufdelete = { enabled = true },
-    dashboard = { enabled = true },
-    debug = { enabled = true },
-    dim = { enabled = true },
-    explorer = {
-      enabled = true,
-      replace_netrw = true, -- Replace netrw with the snacks explorer
-    },
-    git = { enabled = true },
-    image = { enabled = true },
-    indent = { enabled = true },
-    input = { enabled = true },
-    notifier = {
-      enabled = true,
-      timeout = 3000,
-    },
-    picker = {
-      enabled = true,
-      finder = 'recent_projects',
-      format = 'file',
-      dev = { '~/Repos' },
-      confirm = 'load_session',
-      patterns = { '.git', '_darcs', '.hg', '.bzr', '.svn', 'package.json', 'Makefile' },
-      recent = true,
-      matcher = {
-        frecency = true, -- use frecency boosting
-        sort_empty = true, -- sort even when the filter is empty
-        cwd_bonus = false,
-      },
-    },
-    profiler = { enabled = true },
-    quickfile = { enabled = true },
-    rename = { enabled = true },
-    scope = { enabled = true },
-    scroll = { enabled = true },
-    statuscolumn = { enabled = true },
-    terminal = { enabled = true },
-    toggle = {
-      enabled = true,
-      map = vim.keymap.set, -- keymap.set function to use
-      which_key = true, -- integrate with which-key to show enabled/disabled icons and colors
-      notify = true, -- show a notification when toggling
-      -- icons for enabled/disabled states
-      icon = {
-        enabled = ' ',
-        disabled = ' ',
-      },
-      -- colors for enabled/disabled states
-      color = {
-        enabled = 'green',
-        disabled = 'yellow',
-      },
-      wk_desc = {
-        enabled = 'Disable ',
-        disabled = 'Enable ',
-      },
-    },
-    words = { enabled = true },
-    styles = {
-      notification = {
-        wo = { wrap = true }, -- Wrap notifications
-      },
-    },
-  },
-  init = function()
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'VeryLazy',
-      callback = function()
-        -- Setup some globals for debugging (lazy-loaded)
-        _G.dd = function(...)
-          Snacks.debug.inspect(...)
-        end
-        _G.bt = function()
-          Snacks.debug.backtrace()
-        end
-        vim.print = _G.dd -- Override print to use snacks for `:=` command
+	"folke/snacks.nvim",
+	priority = 1000,
+	lazy = false,
+	---@type snacks.Config
+	opts = {
+		bigfile = { enabled = true },
+		bufdelete = { enabled = true },
+		dashboard = { enabled = true },
+		debug = { enabled = true },
+		dim = { enabled = true },
+		explorer = {
+			enabled = true,
+			replace_netrw = true, -- Replace netrw with the snacks explorer
+			hidden = true,
+			auto_cd = true, -- Change cwd when selecting a directory
+		},
+		git = { enabled = true },
+		image = { enabled = true },
+		indent = { enabled = true },
+		input = { enabled = true },
+		notifier = {
+			enabled = true,
+			timeout = 3000,
+		},
+		picker = {
+			enabled = true,
+			hidden = true,
+			ignored = true,
+			sources = {
+				files = { ignored = true, hidden = true },
+				grep = { ignored = true, hidden = true },
+				grep_word = { ignored = true, hidden = true },
+				grep_buffers = { ignored = true, hidden = true },
+			},
+		},
+		profiler = { enabled = true },
+		quickfile = { enabled = true },
+		rename = { enabled = true },
+		scope = { enabled = true },
+		scroll = { enabled = true },
+		statuscolumn = { enabled = true },
+		terminal = { enabled = true },
+		toggle = {
+			enabled = true,
+			map = vim.keymap.set, -- keymap.set function to use
+			which_key = true, -- integrate with which-key to show enabled/disabled icons and colors
+			notify = true, -- show a notification when toggling
+			-- icons for enabled/disabled states
+			icon = {
+				enabled = " ",
+				disabled = " ",
+			},
+			-- colors for enabled/disabled states
+			color = {
+				enabled = "green",
+				disabled = "yellow",
+			},
+			wk_desc = {
+				enabled = "Disable ",
+				disabled = "Enable ",
+			},
+		},
+		words = { enabled = true },
+		styles = {
+			notification = {
+				wo = { wrap = true }, -- Wrap notifications
+			},
+		},
+	},
+	init = function()
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "VeryLazy",
+			callback = function()
+				-- Setup some globals for debugging (lazy-loaded)
+				_G.dd = function(...)
+					Snacks.debug.inspect(...)
+				end
+				_G.bt = function()
+					Snacks.debug.backtrace()
+				end
+				vim.print = _G.dd -- Override print to use snacks for `:=` command
 
-        -- Create some toggle mappings
-        Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>us'
-        Snacks.toggle.option('wrap', { name = 'Wrap' }):map '<leader>uw'
-        Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>uL'
-        Snacks.toggle.diagnostics():map '<leader>ud'
-        Snacks.toggle.line_number():map '<leader>ul'
-        Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map '<leader>uc'
-        Snacks.toggle.treesitter():map '<leader>uT'
-        Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>ub'
-        Snacks.toggle.inlay_hints():map '<leader>uh'
-        Snacks.toggle.indent():map '<leader>ug'
-        Snacks.toggle.dim():map '<leader>uD'
-      end,
-    })
-  end,
+				-- Create some toggle mappings
+				Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+				Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+				Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
+				Snacks.toggle.diagnostics():map("<leader>ud")
+				Snacks.toggle.line_number():map("<leader>ul")
+				Snacks.toggle
+					.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+					:map("<leader>uc")
+				Snacks.toggle.treesitter():map("<leader>uT")
+				Snacks.toggle
+					.option("background", { off = "light", on = "dark", name = "Dark Background" })
+					:map("<leader>ub")
+				Snacks.toggle.inlay_hints():map("<leader>uh")
+				Snacks.toggle.indent():map("<leader>ug")
+				Snacks.toggle.dim():map("<leader>uD")
+			end,
+		})
+	end,
 }

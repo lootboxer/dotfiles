@@ -6,5 +6,5 @@ nvim
 spell/
 lazy-lock.json
 
-envs/
-!envs/*.example.lua
+lua/envs/*
+!lua/envs/*.example.lua
