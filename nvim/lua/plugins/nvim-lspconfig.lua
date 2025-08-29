@@ -107,79 +107,27 @@ return {
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		local servers = {
-			-- clangd = {},
-			gopls = {},
-			-- pyright = {},
-			rust_analyzer = {},
-			-- ts_ls = {
-			-- 	settings = {
-			-- 		typescript = {
-			-- 			hostInfo = "neovim",
-			-- 			suggest = {
-			-- 				autoImports = true,
-			-- 				includeCompletionsForModuleExports = true,
-			-- 				includeCompletionsForImportStatements = true,
-			-- 			},
-			-- 			preferences = {
-			-- 				includeCompletionsForModuleExports = true,
-			-- 				includeCompletionsForImportStatements = true,
-			-- 				importModuleSpecifierPreference = "non-relative",
-			-- 				includePackageJsonAutoImports = "auto",
-			-- 				importModuleSpecifier = "non-relative",
-			-- 			},
-			-- 			inlayHints = {
-			-- 				includeInlayParameterNameHints = "all",
-			-- 				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-			-- 				includeInlayFunctionParameterTypeHints = true,
-			-- 				includeInlayVariableTypeHints = true,
-			-- 				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-			-- 				includeInlayPropertyDeclarationTypeHints = true,
-			-- 				includeInlayFunctionLikeReturnTypeHints = true,
-			-- 				includeInlayEnumMemberValueHints = true,
-			-- 			},
-			-- 		},
-			-- 		javascript = {
-			-- 			suggest = {
-			-- 				autoImports = true,
-			-- 				includeCompletionsForModuleExports = true,
-			-- 				includeCompletionsForImportStatements = true,
-			-- 			},
-			-- 			hostInfo = "neovim",
-			-- 			preferences = {
-			-- 				includeCompletionsForModuleExports = true,
-			-- 				includeCompletionsForImportStatements = true,
-			-- 				importModuleSpecifierPreference = "non-relative",
-			-- 				includePackageJsonAutoImports = "auto",
-			-- 				importModuleSpecifier = "non-relative",
-			-- 			},
-			-- 		},
-			-- 	},
-			-- 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-			-- },
-			-- Vue. Config of vue is based on https://github.com/vuejs/language-tools/wiki/Neovim.
-			ts_ls = function()
-				-- 1. Import Mason Registry
-				local mason_registry = require("mason-registry")
-				local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-					.. "/node_modules/@vue/language-server"
-
-				-- 2. Import lspconfig
-				local lspconfig = require("lspconfig")
-
-				-- 3. Configure ts_ls for TypeScript and Vue
-				lspconfig.ts_ls.setup({
-					init_options = {
-						plugins = {
-							{
-								name = "@vue/typescript-plugin",
-								location = vue_language_server_path,
-								languages = { "vue" },
+			vue_ls = {},
+			vtsls = {
+				settings = {
+					vtsls = {
+						tsserver = {
+							globalPlugins = {
+								{
+									name = "@vue/typescript-plugin",
+									location = vim.fn.expand("$MASON/packages")
+										.. "/vue-language-server"
+										.. "/node_modules/@vue/language-server",
+									languages = { "vue" },
+								},
 							},
 						},
 					},
-					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-				})
-			end,
+				},
+				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+			},
+			gopls = {},
+			rust_analyzer = {},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -192,7 +140,6 @@ return {
 					},
 				},
 			},
-
 			-- python lsp
 			pyright = {},
 			-- CSS/SCSS LSP
@@ -203,6 +150,7 @@ return {
 			emmet_language_server = {
 				filetypes = { "html", "css", "javascript", "typescript", "vue", "jsx", "tsx" },
 			},
+			-- clangd = {},
 		}
 
 		local ensure_installed = vim.tbl_keys(servers or {})
@@ -212,7 +160,6 @@ return {
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({
-			ensure_installed = { "lua_ls", "vtsls" },
 			automatic_enable = true,
 			automatic_installation = true,
 			handlers = {
