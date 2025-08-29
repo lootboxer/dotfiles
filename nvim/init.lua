@@ -74,6 +74,11 @@ vim.o.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
 
+-- Tab and indentation settings
+vim.o.tabstop = 2       -- Number of spaces that a <Tab> in the file counts for
+vim.o.shiftwidth = 2    -- Number of spaces to use for each step of (auto)indent
+vim.o.expandtab = true  -- Use spaces instead of tabs
+
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
