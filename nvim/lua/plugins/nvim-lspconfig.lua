@@ -107,25 +107,22 @@ return {
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		local servers = {
-			vue_ls = {},
-			vtsls = {
-				settings = {
-					vtsls = {
-						tsserver = {
-							globalPlugins = {
-								{
-									name = "@vue/typescript-plugin",
-									location = vim.fn.expand("$MASON/packages")
-										.. "/vue-language-server"
-										.. "/node_modules/@vue/language-server",
-									languages = { "vue" },
-								},
-							},
+			-- https://github.com/vuejs/language-tools/wiki/Neovim
+			ts_ls = {
+				init_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = vim.fn.stdpath("data")
+								.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+							languages = { "vue" },
+							configNamespace = "typescript",
 						},
 					},
 				},
 				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 			},
+			vue_ls = {},
 			gopls = {},
 			rust_analyzer = {},
 			lua_ls = {
@@ -148,10 +145,14 @@ return {
 			},
 			-- Emmet LSP
 			emmet_language_server = {
-				filetypes = { "html", "css", "javascript", "typescript", "vue", "jsx", "tsx" },
+				filetypes = { "html", "css", "javascript", "typescript", "jsx", "tsx" },
 			},
 			-- clangd = {},
 		}
+
+		local lspconfig = require("lspconfig")
+		vim.lsp.enable({ "ts_ls", "vue_ls" })
+		lspconfig.ts_ls.setup(servers["ts_ls"])
 
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
@@ -166,7 +167,7 @@ return {
 				function(server_name)
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
+					lspconfig[server_name].setup(server)
 				end,
 			},
 		})
