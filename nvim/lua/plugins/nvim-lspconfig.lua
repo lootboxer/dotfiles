@@ -150,10 +150,6 @@ return {
 			-- clangd = {},
 		}
 
-		local lspconfig = require("lspconfig")
-		vim.lsp.enable({ "ts_ls", "vue_ls" })
-		lspconfig.ts_ls.setup(servers["ts_ls"])
-
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua",
@@ -167,7 +163,9 @@ return {
 				function(server_name)
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					lspconfig[server_name].setup(server)
+					-- lspconfig[server_name].setup(server)
+          vim.lsp.config(server_name, servers[server_name])
+          vim.lsp.enable(server_name)
 				end,
 			},
 		})
