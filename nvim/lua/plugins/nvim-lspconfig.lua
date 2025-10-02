@@ -18,6 +18,7 @@ return {
 
 				map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
 				map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
+				map("grh", vim.lsp.buf.hover, "[G] Go to [H]over information")
 				map("grr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 				map("gri", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 				map("grd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
@@ -164,10 +165,20 @@ return {
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					-- lspconfig[server_name].setup(server)
-          vim.lsp.config(server_name, servers[server_name])
-          vim.lsp.enable(server_name)
+					vim.lsp.config(server_name, servers[server_name])
+					vim.lsp.enable(server_name)
 				end,
 			},
 		})
+
+		-- vim.lsp.enable({ "ts_ls", "vue_ls" })
+		-- lspconfig.ts_ls.setup(servers["ts_ls"])
+
+		-- Custom
+		for key, value in pairs(servers) do
+			vim.lsp.enable(key)
+			vim.lsp.config(key, value)
+		end
+		-- custom
 	end,
 }
