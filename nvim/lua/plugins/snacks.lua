@@ -10,12 +10,6 @@ return {
 		dashboard = { enabled = true },
 		debug = { enabled = true },
 		dim = { enabled = true },
-		explorer = {
-			enabled = true,
-			replace_netrw = true, -- Replace netrw with the snacks explorer
-			hidden = true,
-			auto_cd = true, -- Change cwd when selecting a directory
-		},
 		git = { enabled = true },
 		image = { enabled = true },
 		indent = { enabled = true },

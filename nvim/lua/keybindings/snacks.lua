@@ -35,7 +35,6 @@ vim.keymap.set('n', '<leader>N', function()
 end, { desc = 'Neovim News' })
 
 require 'keybindings.snacks.buffers'
-require 'keybindings.snacks.explorer'
 require 'keybindings.snacks.grep'
 require 'keybindings.snacks.lsp'
 require 'keybindings.snacks.notifications'
