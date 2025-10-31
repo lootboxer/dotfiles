@@ -8,3 +8,5 @@ lazy-lock.json
 
 lua/envs/*
 !lua/envs/*.example.lua
+
+.claude/
