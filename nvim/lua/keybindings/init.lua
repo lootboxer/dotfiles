@@ -32,10 +32,12 @@ vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+vim.keymap.del("v", "s")
+vim.keymap.del("n", "s")
+
 require("keybindings.snacks")
 require("keybindings.vi-mongo")
 require("keybindings.neovim-project")
 -- require 'keybindings.neovim-project'
 -- require 'keybindings.toggleterm'
--- require 'keybindings.neo-tree'
 -- require 'keybindings.telescope'
