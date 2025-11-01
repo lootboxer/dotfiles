@@ -16,6 +16,11 @@ return {
 		instructions_file = "avante.md",
 		provider = env.provider or nil,
 		providers = env.providers or {},
+
+    -- nvim-tree.
+		selector = {
+			exclude_auto_select = { "NvimTree" },
+		},
 	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
@@ -47,6 +52,26 @@ return {
 				file_types = { "markdown", "Avante" },
 			},
 			ft = { "markdown", "Avante" },
+		},
+	},
+	keys = {
+		{
+			"<leader>a+",
+			function()
+				local tree_ext = require("avante.extensions.nvim_tree")
+				tree_ext.add_file()
+			end,
+			desc = "Select file in NvimTree",
+			ft = "NvimTree",
+		},
+		{
+			"<leader>a-",
+			function()
+				local tree_ext = require("avante.extensions.nvim_tree")
+				tree_ext.remove_file()
+			end,
+			desc = "Deselect file in NvimTree",
+			ft = "NvimTree",
 		},
 	},
 }

@@ -37,7 +37,3 @@ vim.keymap.del("n", "s")
 
 require("keybindings.snacks")
 require("keybindings.vi-mongo")
-require("keybindings.neovim-project")
--- require 'keybindings.neovim-project'
--- require 'keybindings.toggleterm'
--- require 'keybindings.telescope'

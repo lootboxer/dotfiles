@@ -23,4 +23,9 @@ return {
 	},
 	lazy = false,
 	priority = 100,
+	keys = {
+		{ "<leader>pp", "<CMD>Telescope neovim-project discover<CR>", desc = "Project Discover" },
+		{ "<leader>ph", "<CMD>Telescope neovim-project history<CR>", desc = "Project History" },
+		{ "<leader>pr", "<CMD>NeovimProjectLoad<CR>", desc = "Go to Project Root" },
+	},
 }

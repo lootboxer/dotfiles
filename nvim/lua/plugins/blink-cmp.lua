@@ -1,8 +1,8 @@
 return { -- Autocompletion
 	"saghen/blink.cmp",
 	version = "1.*",
-	event = "VimEnter",
 	dependencies = { "L3MON4D3/LuaSnip", "folke/lazydev.nvim" },
+	event = "VimEnter",
 	opts = {
 		keymap = {
 			preset = "super-tab",
