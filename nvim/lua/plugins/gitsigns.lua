@@ -1,5 +1,5 @@
 return {
-	'lewis6991/gitsigns.nvim',
+	"lewis6991/gitsigns.nvim",
 	event = "VeryLazy",
 	opts = {
 		signs = {
@@ -19,10 +19,10 @@ return {
 			untracked = { text = "┆" },
 		},
 		signs_staged_enable = true,
-		signcolumn = true, -- Toggle with :Gitsigns toggle_signs
-		numhl = true, -- Toggle with :Gitsigns toggle_numhl
-		linehl = true, -- Toggle with :Gitsigns toggle_linehl
-		word_diff = true, -- Toggle with :Gitsigns toggle_word_diff
+		signcolumn = false, -- Toggle with :Gitsigns toggle_signs
+		numhl = false, -- Toggle with :Gitsigns toggle_numhl
+		linehl = false, -- Toggle with :Gitsigns toggle_linehl
+		word_diff = false, -- Toggle with :Gitsigns toggle_word_diff
 		watch_gitdir = {
 			follow_files = true,
 		},

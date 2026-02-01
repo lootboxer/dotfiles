@@ -20,6 +20,7 @@ return { -- Highlight, edit, and navigate code
 			"typescript",
 			"tsx",
 			"vue",
+      "scss",
 		},
 		auto_install = true,
 		highlight = { enable = true },

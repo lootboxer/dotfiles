@@ -8,16 +8,15 @@ return {
 		or "make",
 	event = "VeryLazy",
 	version = false, -- Never set this value to "*"! Never!
-	---@module 'avante'
-	---@type avante.Config
 	opts = {
 		-- add any opts here
 		-- this file can contain specific instructions for your project
 		instructions_file = "avante.md",
 		provider = env.provider or nil,
 		providers = env.providers or {},
+		mode = "legacy", -- Switch from "agentic" to "legacy"
 
-    -- nvim-tree.
+		-- nvim-tree.
 		selector = {
 			exclude_auto_select = { "NvimTree" },
 		},
