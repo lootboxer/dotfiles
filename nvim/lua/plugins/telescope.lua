@@ -60,7 +60,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = 'Marks' })
     vim.keymap.set('n', '<leader>sM', builtin.man_pages, { desc = 'Man Pages' })
     vim.keymap.set('n', '<leader>sq', builtin.quickfix, { desc = 'Quickfix List' })
-    vim.keymap.set('n', '<leader>sR', builtin.resume, { desc = 'Resume' })
+    vim.keymap.set('n', '<leader>s.', builtin.resume, { desc = 'Resume' })
     vim.keymap.set('n', '<leader>sn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = 'Search Neovim Files' })
