@@ -12,9 +12,9 @@ return {
 		-- add any opts here
 		-- this file can contain specific instructions for your project
 		instructions_file = "avante.md",
-		provider = env.provider or nil,
+		provider = env.provider,
 		providers = env.providers or {},
-		mode = "legacy", -- Switch from "agentic" to "legacy"
+		mode = "agentic",
 
 		-- nvim-tree.
 		selector = {
@@ -39,8 +39,7 @@ return {
 					drag_and_drop = {
 						insert_mode = true,
 					},
-					-- required for Windows users
-					use_absolute_path = true,
+					use_absolute_path = false,
 				},
 			},
 		},

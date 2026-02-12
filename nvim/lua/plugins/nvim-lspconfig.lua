@@ -16,16 +16,17 @@ return {
 					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
-				map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
-				map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
-				map("grh", vim.lsp.buf.hover, "[G] Go to [H]over information")
-				map("grr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-				map("gri", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-				map("grd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-				map("grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-				map("gO", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
-				map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
-				map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
+				map("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
+				map("gD", vim.lsp.buf.declaration, "Goto Declaration")
+				map("gr", require("telescope.builtin").lsp_references, "References")
+				map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
+				map("gy", require("telescope.builtin").lsp_type_definitions, "Goto Type Definition")
+				map("grn", vim.lsp.buf.rename, "Rename")
+				map("gra", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
+				map("gO", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
+				map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
+				map("<leader>ss", require("telescope.builtin").lsp_document_symbols, "LSP Document Symbols")
+				map("<leader>sS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "LSP Workspace Symbols")
 
 				local function client_supports_method(client, method, bufnr)
 					if vim.fn.has("nvim-0.11") == 1 then
@@ -135,7 +136,7 @@ return {
 			},
 			-- Emmet LSP
 			emmet_language_server = {
-				filetypes = { "html", "css", "javascript", "typescript", "jsx", "tsx" },
+				filetypes = { "html", "css", "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
 			},
 			-- clangd = {},
 		}

@@ -18,17 +18,7 @@ return {
 			enabled = true,
 			timeout = 3000,
 		},
-		picker = {
-			enabled = true,
-			hidden = true,
-			ignored = true,
-			sources = {
-				files = { ignored = true, hidden = true },
-				grep = { ignored = true, hidden = true },
-				grep_word = { ignored = true, hidden = true },
-				grep_buffers = { ignored = true, hidden = true },
-			},
-		},
+		picker = { enabled = false },
 		profiler = { enabled = true },
 		quickfile = { enabled = true },
 		rename = { enabled = true },
