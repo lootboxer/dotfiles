@@ -93,19 +93,8 @@ return {
 			virtual_text = {
 				source = "if_many",
 				spacing = 2,
-				format = function(diagnostic)
-					local diagnostic_message = {
-						[vim.diagnostic.severity.ERROR] = diagnostic.message,
-						[vim.diagnostic.severity.WARN] = diagnostic.message,
-						[vim.diagnostic.severity.INFO] = diagnostic.message,
-						[vim.diagnostic.severity.HINT] = diagnostic.message,
-					}
-					return diagnostic_message[diagnostic.severity]
-				end,
 			},
 		})
-
-		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		local servers = {
 			-- https://github.com/vuejs/language-tools/wiki/Neovim
@@ -151,6 +140,8 @@ return {
 			-- clangd = {},
 		}
 
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
+
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua",
@@ -160,25 +151,12 @@ return {
 		require("mason-lspconfig").setup({
 			automatic_enable = true,
 			automatic_installation = true,
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					-- lspconfig[server_name].setup(server)
-					vim.lsp.config(server_name, servers[server_name])
-					vim.lsp.enable(server_name)
-				end,
-			},
 		})
 
-		-- vim.lsp.enable({ "ts_ls", "vue_ls" })
-		-- lspconfig.ts_ls.setup(servers["ts_ls"])
-
-		-- Custom
-		for key, value in pairs(servers) do
-			vim.lsp.enable(key)
-			vim.lsp.config(key, value)
+		for name, config in pairs(servers) do
+			config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
+			vim.lsp.config(name, config)
+			vim.lsp.enable(name)
 		end
-		-- custom
 	end,
 }
