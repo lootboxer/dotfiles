@@ -1,0 +1,48 @@
+{
+  "Vue Component Props Interface": {
+    "prefix": "vpropsinterface",
+    "body": [
+      "interface ${1:ComponentName}Props {",
+      "\t${2:propName}: ${3:string}",
+      "\t${4:optionalProp}?: ${5:number}",
+      "}",
+      "$0"
+    ],
+    "description": "Vue component props interface"
+  },
+  "Vue Component Emits Type": {
+    "prefix": "vemitstype",
+    "body": [
+      "interface ${1:ComponentName}Emits {",
+      "\t${2:eventName}: [${3:payload}: ${4:any}]",
+      "\t${5:anotherEvent}: []",
+      "}",
+      "$0"
+    ],
+    "description": "Vue component emits type"
+  },
+  "Vue Ref Type": {
+    "prefix": "vreftype",
+    "body": [
+      "const ${1:name} = ref<${2:Type}>(${3:initialValue})"
+    ],
+    "description": "Vue ref with explicit type"
+  },
+  "Vue Computed Type": {
+    "prefix": "vcomputedtype",
+    "body": [
+      "const ${1:name} = computed<${2:Type}>(() => {",
+      "\treturn ${3:value}",
+      "})"
+    ],
+    "description": "Vue computed with explicit type"
+  },
+  "Vue Component Instance Type": {
+    "prefix": "vinstancetype",
+    "body": [
+      "const ${1:componentRef} = ref<InstanceType<typeof ${2:Component}> | null>(null)"
+    ],
+    "description": "Vue component instance ref type"
+  }
+}
+

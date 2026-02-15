@@ -1,0 +1,97 @@
+{
+  "Vue Component Tag": {
+    "prefix": "vcomp",
+    "body": [
+      "<${1:ComponentName} ${2::prop=\"value\"} />$0"
+    ],
+    "description": "Vue self-closing component"
+  },
+  "Vue Slot": {
+    "prefix": "vslot",
+    "body": [
+      "<template #${1:slotName}=\"${2:slotProps}\">",
+      "\t$0",
+      "</template>"
+    ],
+    "description": "Vue named slot with scoped props"
+  },
+  "Vue Teleport": {
+    "prefix": "vteleport",
+    "body": [
+      "<Teleport to=\"${1:#app}\">",
+      "\t$0",
+      "</Teleport>"
+    ],
+    "description": "Vue 3 Teleport component"
+  },
+  "Vue Transition": {
+    "prefix": "vtransition",
+    "body": [
+      "<Transition name=\"${1:fade}\">",
+      "\t$0",
+      "</Transition>"
+    ],
+    "description": "Vue 3 Transition component"
+  },
+  "Vue TransitionGroup": {
+    "prefix": "vtransitiongroup",
+    "body": [
+      "<TransitionGroup name=\"${1:list}\" tag=\"${2:div}\">",
+      "\t$0",
+      "</TransitionGroup>"
+    ],
+    "description": "Vue 3 TransitionGroup component"
+  },
+  "Vue KeepAlive": {
+    "prefix": "vkeepalive",
+    "body": [
+      "<KeepAlive :include=\"${1:componentNames}\">",
+      "\t$0",
+      "</KeepAlive>"
+    ],
+    "description": "Vue 3 KeepAlive component"
+  },
+  "Vue Suspense": {
+    "prefix": "vsuspense",
+    "body": [
+      "<Suspense>",
+      "\t<template #default>",
+      "\t\t$0",
+      "\t</template>",
+      "\t<template #fallback>",
+      "\t\t<div>Loading...</div>",
+      "\t</template>",
+      "</Suspense>"
+    ],
+    "description": "Vue 3 Suspense component"
+  },
+  "Vue v-model": {
+    "prefix": "vmodel",
+    "body": [
+      "v-model=\"${1:modelValue}\""
+    ],
+    "description": "Vue v-model directive"
+  },
+  "Vue v-model custom": {
+    "prefix": "vmodelcustom",
+    "body": [
+      "v-model:${1:propName}=\"${2:value}\""
+    ],
+    "description": "Vue custom v-model"
+  },
+  "Vue @click": {
+    "prefix": "@click",
+    "body": [
+      "@click=\"${1:handleClick}\""
+    ],
+    "description": "Vue click event handler"
+  },
+  "Vue @submit": {
+    "prefix": "@submit",
+    "body": [
+      "@submit.prevent=\"${1:handleSubmit}\""
+    ],
+    "description": "Vue submit event handler with prevent"
+  }
+}
+
