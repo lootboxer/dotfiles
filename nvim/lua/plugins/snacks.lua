@@ -10,12 +10,6 @@ return {
 		dashboard = { enabled = true },
 		debug = { enabled = true },
 		dim = { enabled = true },
-		explorer = {
-			enabled = true,
-			replace_netrw = true, -- Replace netrw with the snacks explorer
-			hidden = true,
-			auto_cd = true, -- Change cwd when selecting a directory
-		},
 		git = { enabled = true },
 		image = { enabled = true },
 		indent = { enabled = true },
@@ -24,17 +18,7 @@ return {
 			enabled = true,
 			timeout = 3000,
 		},
-		picker = {
-			enabled = true,
-			hidden = true,
-			ignored = true,
-			sources = {
-				files = { ignored = true, hidden = true },
-				grep = { ignored = true, hidden = true },
-				grep_word = { ignored = true, hidden = true },
-				grep_buffers = { ignored = true, hidden = true },
-			},
-		},
+		picker = { enabled = false },
 		profiler = { enabled = true },
 		quickfile = { enabled = true },
 		rename = { enabled = true },

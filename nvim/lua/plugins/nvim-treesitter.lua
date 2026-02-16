@@ -1,9 +1,10 @@
 return { -- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	main = "nvim-treesitter.configs", -- Sets main module to use for opts
+	main = "nvim-treesitter.config", -- Sets main module to use for opts
 	-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 	opts = {
+    config=true,
 		ensure_installed = {
 			"bash",
 			"c",
@@ -20,6 +21,7 @@ return { -- Highlight, edit, and navigate code
 			"typescript",
 			"tsx",
 			"vue",
+      "scss",
 		},
 		auto_install = true,
 		highlight = { enable = true },

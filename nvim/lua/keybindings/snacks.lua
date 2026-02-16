@@ -1,6 +1,3 @@
-vim.keymap.set('n', '<leader>:', function()
-  Snacks.picker.command_history()
-end, { desc = 'Command History' })
 vim.keymap.set('n', '<leader>cR', function()
   Snacks.rename.rename_file()
 end, { desc = 'Rename File' })
@@ -35,10 +32,6 @@ vim.keymap.set('n', '<leader>N', function()
 end, { desc = 'Neovim News' })
 
 require 'keybindings.snacks.buffers'
-require 'keybindings.snacks.explorer'
-require 'keybindings.snacks.grep'
-require 'keybindings.snacks.lsp'
 require 'keybindings.snacks.notifications'
-require 'keybindings/snacks/find'
 require 'keybindings/snacks/terminal'
 require 'keybindings/snacks/git'

@@ -1,0 +1,261 @@
+{
+  "Vue 3 Component with TypeScript": {
+    "prefix": "v3comp",
+    "body": [
+      "<script setup lang=\"ts\">",
+      "import { ref, computed, onMounted } from 'vue'",
+      "",
+      "// Props",
+      "interface Props {",
+      "\t${1:propName}?: ${2:string}",
+      "}",
+      "",
+      "const props = withDefaults(defineProps<Props>(), {",
+      "\t${1:propName}: '${3:defaultValue}'",
+      "})",
+      "",
+      "// Emits",
+      "const emit = defineEmits<{",
+      "\t${4:eventName}: [${5:payload}: ${6:any}]",
+      "}>()",
+      "",
+      "// State",
+      "const ${7:stateName} = ref<${8:string}>('${9:initialValue}')",
+      "",
+      "// Computed",
+      "const ${10:computedName} = computed(() => {",
+      "\treturn ${11:// computation}",
+      "})",
+      "",
+      "// Methods",
+      "const ${12:methodName} = () => {",
+      "\t$0",
+      "}",
+      "",
+      "// Lifecycle",
+      "onMounted(() => {",
+      "\t// component mounted",
+      "})",
+      "</script>",
+      "",
+      "<template>",
+      "\t<div class=\"${13:component-name}\">",
+      "\t\t",
+      "\t</div>",
+      "</template>",
+      "",
+      "<style scoped lang=\"scss\">",
+      ".${13:component-name} {",
+      "\t",
+      "}",
+      "</style>"
+    ],
+    "description": "Vue 3 Component with TypeScript, props, emits, and lifecycle"
+  },
+  "Vue 3 Composable": {
+    "prefix": "v3composable",
+    "body": [
+      "import { ref, computed, type Ref } from 'vue'",
+      "",
+      "export function use${1:ComposableName}(${2:params}) {",
+      "\t// State",
+      "\tconst ${3:state} = ref<${4:any}>(${5:null})",
+      "\t",
+      "\t// Computed",
+      "\tconst ${6:computedValue} = computed(() => {",
+      "\t\treturn ${7:// computation}",
+      "\t})",
+      "\t",
+      "\t// Methods",
+      "\tconst ${8:methodName} = async () => {",
+      "\t\t$0",
+      "\t}",
+      "\t",
+      "\treturn {",
+      "\t\t${3:state},",
+      "\t\t${6:computedValue},",
+      "\t\t${8:methodName}",
+      "\t}",
+      "}",
+      "",
+      "export type ${1:ComposableName}Return = ReturnType<typeof use${1:ComposableName}>"
+    ],
+    "description": "Vue 3 Composable with TypeScript"
+  },
+  "Vue 3 Ref": {
+    "prefix": "vref",
+    "body": [
+      "const ${1:name} = ref<${2:string}>(${3:''})"
+    ],
+    "description": "Vue 3 ref with TypeScript"
+  },
+  "Vue 3 Reactive": {
+    "prefix": "vreactive",
+    "body": [
+      "const ${1:state} = reactive({",
+      "\t${2:key}: ${3:value}$0",
+      "})"
+    ],
+    "description": "Vue 3 reactive object"
+  },
+  "Vue 3 Computed": {
+    "prefix": "vcomputed",
+    "body": [
+      "const ${1:computedName} = computed(() => {",
+      "\treturn ${2:// computation}$0",
+      "})"
+    ],
+    "description": "Vue 3 computed property"
+  },
+  "Vue 3 Watch": {
+    "prefix": "vwatch",
+    "body": [
+      "watch(${1:source}, (newValue, oldValue) => {",
+      "\t$0",
+      "})"
+    ],
+    "description": "Vue 3 watch"
+  },
+  "Vue 3 WatchEffect": {
+    "prefix": "vwatcheffect",
+    "body": [
+      "watchEffect(() => {",
+      "\t$0",
+      "})"
+    ],
+    "description": "Vue 3 watchEffect"
+  },
+  "Vue 3 onMounted": {
+    "prefix": "vmounted",
+    "body": [
+      "onMounted(() => {",
+      "\t$0",
+      "})"
+    ],
+    "description": "Vue 3 onMounted lifecycle hook"
+  },
+  "Vue 3 onUnmounted": {
+    "prefix": "vunmounted",
+    "body": [
+      "onUnmounted(() => {",
+      "\t$0",
+      "})"
+    ],
+    "description": "Vue 3 onUnmounted lifecycle hook"
+  },
+  "Vue 3 defineProps with TypeScript": {
+    "prefix": "vprops",
+    "body": [
+      "interface Props {",
+      "\t${1:propName}: ${2:string}",
+      "}",
+      "",
+      "const props = defineProps<Props>()"
+    ],
+    "description": "Vue 3 defineProps with TypeScript interface"
+  },
+  "Vue 3 defineProps with defaults": {
+    "prefix": "vpropsdefault",
+    "body": [
+      "interface Props {",
+      "\t${1:propName}?: ${2:string}",
+      "}",
+      "",
+      "const props = withDefaults(defineProps<Props>(), {",
+      "\t${1:propName}: '${3:defaultValue}'",
+      "})"
+    ],
+    "description": "Vue 3 defineProps with defaults"
+  },
+  "Vue 3 defineEmits": {
+    "prefix": "vemits",
+    "body": [
+      "const emit = defineEmits<{",
+      "\t${1:eventName}: [${2:payload}: ${3:any}]",
+      "}>()"
+    ],
+    "description": "Vue 3 defineEmits with TypeScript"
+  },
+  "Vue 3 defineExpose": {
+    "prefix": "vexpose",
+    "body": [
+      "defineExpose({",
+      "\t${1:methodName}$0",
+      "})"
+    ],
+    "description": "Vue 3 defineExpose"
+  },
+  "Vue 3 v-for": {
+    "prefix": "vfor",
+    "body": [
+      "v-for=\"${1:item} in ${2:items}\" :key=\"${1:item}.${3:id}\""
+    ],
+    "description": "Vue 3 v-for directive"
+  },
+  "Vue 3 v-if/v-else": {
+    "prefix": "vif",
+    "body": [
+      "<${1:div} v-if=\"${2:condition}\">",
+      "\t$0",
+      "</${1:div}>",
+      "<${1:div} v-else>",
+      "\t",
+      "</${1:div}>"
+    ],
+    "description": "Vue 3 v-if/v-else"
+  },
+  "Vue 3 Pinia Store": {
+    "prefix": "vpinia",
+    "body": [
+      "import { defineStore } from 'pinia'",
+      "import { ref, computed } from 'vue'",
+      "",
+      "export const use${1:Store}Store = defineStore('${2:storeName}', () => {",
+      "\t// State",
+      "\tconst ${3:state} = ref<${4:any}>(${5:null})",
+      "\t",
+      "\t// Getters",
+      "\tconst ${6:getter} = computed(() => {",
+      "\t\treturn ${7:// computation}",
+      "\t})",
+      "\t",
+      "\t// Actions",
+      "\tconst ${8:action} = async () => {",
+      "\t\t$0",
+      "\t}",
+      "\t",
+      "\treturn {",
+      "\t\t${3:state},",
+      "\t\t${6:getter},",
+      "\t\t${8:action}",
+      "\t}",
+      "})"
+    ],
+    "description": "Vue 3 Pinia Store with Composition API"
+  },
+  "Vue Router composable": {
+    "prefix": "vrouter",
+    "body": [
+      "import { useRouter, useRoute } from 'vue-router'",
+      "",
+      "const router = useRouter()",
+      "const route = useRoute()",
+      "$0"
+    ],
+    "description": "Vue Router useRouter and useRoute"
+  },
+  "Vue 3 Template Ref": {
+    "prefix": "vtemplateref",
+    "body": [
+      "const ${1:elementRef} = ref<${2:HTMLElement} | null>(null)",
+      "",
+      "onMounted(() => {",
+      "\tif (${1:elementRef}.value) {",
+      "\t\t$0",
+      "\t}",
+      "})"
+    ],
+    "description": "Vue 3 template ref with TypeScript"
+  }
+}
+
