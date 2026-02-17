@@ -2,33 +2,44 @@ return { -- Autocompletion
 	"saghen/blink.cmp",
 	dependencies = {
 		"L3MON4D3/LuaSnip",
-		"folke/lazydev.nvim",
-		"rafamadriz/friendly-snippets",
 	},
 	event = "InsertEnter",
 	version = "*",
 	opts = {
+		-- Use LuaSnip as the snippet engine so blink.cmp surfaces LuaSnip snippets
+		snippets = {
+			preset = "luasnip",
+		},
 		keymap = {
 			preset = "super-tab",
-			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+			--["<C-i>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-e>"] = { "hide", "fallback" },
-			["<CR>"] = { "accept", "fallback" },
-			["<C-k>"] = { "select_prev", "fallback" },
-			["<C-j>"] = { "select_next", "fallback" },
-			["<C-b>"] = { "scroll_documentation_up", "fallback" },
-			["<C-f>"] = { "scroll_documentation_down", "fallback" },
+			["<Tab>"] = { "accept", "fallback" },
+			-- ["<C-k>"] = { "select_prev", "fallback" },
+			-- ["<C-j>"] = { "select_next", "fallback" },
+			["<C-k>"] = { "scroll_documentation_up", "fallback" },
+			["<C-j>"] = { "scroll_documentation_down", "fallback" },
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "lazydev" },
+			default = { "lsp", "buffer", "path", "snippets" },
 			per_filetype = {
-				lua = { "lsp", "path", "snippets", "buffer", "lazydev" },
-				vue = { "lsp", "path", "snippets", "buffer" },
+				lua = { "lsp", "buffer", "path", "snippets" },
+				vue = { "lsp", "buffer", "path", "snippets" },
 			},
 			providers = {
 				lsp = {
 					name = "LSP",
 					module = "blink.cmp.sources.lsp",
 					score_offset = 90,
+				},
+				buffer = {
+					name = "Buffer",
+					module = "blink.cmp.sources.buffer",
+					score_offset = 5,
+					opts = {
+						max_items = 5,
+						min_keyword_length = 3,
+					},
 				},
 				path = {
 					name = "Path",
@@ -47,35 +58,6 @@ return { -- Autocompletion
 					name = "Snippets",
 					module = "blink.cmp.sources.snippets",
 					score_offset = 80,
-					opts = {
-						friendly_snippets = true,
-						search_paths = { vim.fn.stdpath("config") .. "/snippets" },
-						global_snippets = { "all" },
-						extended_filetypes = {
-							sh = { "shelldoc" },
-							cpp = { "unreal" },
-							vue = { "vue", "html", "javascript", "typescript", "css" },
-							typescript = { "javascript" },
-							javascriptreact = { "javascript" },
-							typescriptreact = { "typescript", "javascript" },
-						},
-						ignored_filetypes = {},
-					},
-				},
-				buffer = {
-					name = "Buffer",
-					module = "blink.cmp.sources.buffer",
-					score_offset = 5,
-					opts = {
-						max_items = 5,
-						min_keyword_length = 3,
-					},
-				},
-				lazydev = {
-					name = "LazyDev",
-					module = "lazydev.integrations.blink",
-					score_offset = 100,
-					fallbacks = { "lsp" },
 				},
 			},
 		},
@@ -161,13 +143,27 @@ return { -- Autocompletion
 			},
 		},
 		fuzzy = {
-				use_frecency = true,
-				use_proximity = true,
-				sorts = { "label", "kind", "score" },
-				prebuilt_binaries = {
-					download = true,
-					force_version = nil,
-				},
+			use_frecency = true,
+			use_proximity = true,
+			sorts = { "label", "kind", "score" },
+			prebuilt_binaries = {
+				download = true,
+				force_version = nil,
+			},
 		},
 	},
+	config = function(_, opts)
+		require("blink.cmp").setup(opts)
+
+		local ls = require("luasnip")
+
+		-- Extend filetypes so LuaSnip surfaces snippets across related languages
+		ls.filetype_extend("vue", { "html", "javascript", "typescript", "css" })
+		ls.filetype_extend("typescript", { "javascript" })
+		ls.filetype_extend("javascriptreact", { "javascript" })
+		ls.filetype_extend("typescriptreact", { "typescript", "javascript" })
+
+		-- Load LuaSnip Lua-format snippets from the config snippets directory
+		require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets" })
+	end,
 }
