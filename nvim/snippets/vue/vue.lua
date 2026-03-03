@@ -70,7 +70,7 @@ interface IEmits{}
 const emit = defineEmits<IEmits>()
 
 // Methods
-const function @#(){
+function @#(){
 	@#
 }
 
