@@ -4,7 +4,7 @@ return { -- Highlight, edit, and navigate code
 	main = "nvim-treesitter.config", -- Sets main module to use for opts
 	-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 	opts = {
-    config=true,
+		config = true,
 		ensure_installed = {
 			"bash",
 			"c",
@@ -21,11 +21,31 @@ return { -- Highlight, edit, and navigate code
 			"typescript",
 			"tsx",
 			"vue",
-      "scss",
+			"scss",
 		},
 		auto_install = true,
-		highlight = { enable = true },
+		highlight = {
+			enable = true,
+			-- Disable slow treesitter highlight for large files
+			disable = function(lang, buf)
+				local max_filesize = 100 * 1024 -- 100 KB
+				local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+				if ok and stats and stats.size > max_filesize then
+					return true
+				end
+			end,
+		},
 		indent = { enable = true },
+		-- Enable incremental selection
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection = "<C-space>",
+				node_incremental = "<C-space>",
+				scope_incremental = false,
+				node_decremental = "<bs>",
+			},
+		},
 	},
 	-- There are additional nvim-treesitter modules that you can use to interact
 	-- with nvim-treesitter. You should go explore a few and see what interests you:

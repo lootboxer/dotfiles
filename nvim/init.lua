@@ -26,10 +26,10 @@ vim.opt.swapfile = false -- Disable .swp files
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
--- vim.schedule(function()
---   vim.o.clipboard = 'unnamedplus'
--- end)
-vim.o.clipboard = "unnamedplus"
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+end)
+-- vim.o.clipboard = "unnamedplus"
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -54,14 +54,6 @@ vim.o.timeoutlen = 300
 vim.o.splitright = true
 vim.o.splitbelow = true
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
---
---  Notice listchars is set using `vim.opt` instead of `vim.o`.
---  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
---   See `:help lua-options`
---   and `:help lua-options-guide`
 vim.o.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
@@ -83,9 +75,6 @@ vim.o.expandtab = true -- Use spaces instead of tabs
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -114,9 +103,6 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 --
 require("lazy").setup({
-	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-	{ "NMAC427/guess-indent.nvim", opts = {} }, -- Detect tabstop and shiftwidth automatically
-
 	-- NOTE: Plugins can also be added by using a table,
 	-- with the first argument being the link and the following
 	-- keys can be used to configure plugin behavior/loading/etc.
@@ -139,15 +125,13 @@ require("lazy").setup({
 	-- options to `gitsigns.nvim`.
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/plugins/*.lua`
-	--    This is the easiest way to modularize your config.
-	--
-	--  Uncomment the following line and add your plugins to `lua/plugins/*.lua` to get going.
+	-- This is the easiest way to modularize your config.
 	{ import = "plugins" },
 	--
 	-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
 	-- Or use telescope!
-	-- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
-	-- you can continue same window with `<space>sr` which resumes last telescope search
+	-- In normal mode type `<leader>sh` then write `lazy.nvim-plugin`
+	-- you can continue same window with `<leader>sr` which resumes last telescope search
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -171,7 +155,4 @@ require("lazy").setup({
 })
 
 require("keybindings")
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
---
+require("autocmds")

@@ -60,29 +60,17 @@ return {
 import { ref, computed, onMounted } from 'vue'
 
 // Props
-interface Props {
-	@#?: @#
-}
+interface IProps{}
 
-const props = withDefaults(defineProps<Props>(), {
-	@#: '@#'
-})
+const props = withDefaults(defineProps<IProps>(), {})
 
 // Emits
-const emit = defineEmits<{
-	@#: [@#: @#]
-}>()
+interface IEmits{}
 
-// State
-const @# = ref<@#>(@#)
-
-// Computed
-const @# = computed(() => {
-	return @#
-})
+const emit = defineEmits<IEmits>()
 
 // Methods
-const @# = () => {
+const function @#(){
 	@#
 }
 
@@ -105,24 +93,12 @@ onMounted(() => {
 </style>
 ]],
 			{
-				i(1, "propName"),
-				i(2, "string"),
-				i(1),
-				i(3, "defaultValue"),
-				i(4, "eventName"),
-				i(5, "payload"),
-				i(6, "any"),
-				i(7, "stateName"),
-				i(8, "string"),
-				i(9, "initialValue"),
-				i(10, "computedName"),
-				i(11, "// computation"),
-				i(12, "methodName"),
-				i(13),
+				i(1, "myFunc"),
+				i(2, "//"),
 				f(get_filename_kebab),
-				i(0),
+				i(3),
 				f(get_filename_kebab),
-				i(14),
+				i(4),
 			},
 			{ delimiters = "@#" }
 		)
