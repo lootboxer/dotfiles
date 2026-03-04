@@ -27,37 +27,37 @@ return { -- Autocompletion
 				vue = { "lsp", "buffer", "path", "snippets" },
 			},
 			providers = {
-				lsp = {
-					name = "LSP",
-					module = "blink.cmp.sources.lsp",
-					score_offset = 90,
-				},
-				buffer = {
-					name = "Buffer",
-					module = "blink.cmp.sources.buffer",
-					score_offset = 5,
-					opts = {
-						max_items = 5,
-						min_keyword_length = 3,
-					},
-				},
-				path = {
-					name = "Path",
-					module = "blink.cmp.sources.path",
-					score_offset = 3,
-					opts = {
-						trailing_slash = false,
-						label_trailing_slash = true,
-						get_cwd = function(context)
-							return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
-						end,
-						show_hidden_files_by_default = false,
-					},
-				},
-				snippets = {
-					name = "Snippets",
-					module = "blink.cmp.sources.snippets",
-					score_offset = 80,
+						buffer = {
+							name = "Buffer",
+							module = "blink.cmp.sources.buffer",
+							score_offset = 100,
+							opts = {
+								max_items = 10,
+								min_keyword_length = 2,
+							},
+						},
+						lsp = {
+							name = "LSP",
+							module = "blink.cmp.sources.lsp",
+							score_offset = 90,
+						},
+						path = {
+							name = "Path",
+							module = "blink.cmp.sources.path",
+							score_offset = 80,
+							opts = {
+								trailing_slash = false,
+								label_trailing_slash = true,
+								get_cwd = function(context)
+									return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
+								end,
+								show_hidden_files_by_default = false,
+							},
+						},
+						snippets = {
+							name = "Snippets",
+							module = "blink.cmp.sources.snippets",
+							score_offset = 70,
 				},
 			},
 		},
