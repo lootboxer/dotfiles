@@ -143,7 +143,7 @@ return { -- Autocompletion
 			},
 		},
 		fuzzy = {
-			use_frecency = true,
+			frecency = { enabled = true },
 			use_proximity = true,
 			sorts = { "label", "kind", "score" },
 			prebuilt_binaries = {

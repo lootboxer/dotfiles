@@ -61,12 +61,10 @@ import { ref, computed, onMounted } from 'vue'
 
 // Props
 interface IProps{}
-
 const props = withDefaults(defineProps<IProps>(), {})
 
 // Emits
 interface IEmits{}
-
 const emit = defineEmits<IEmits>()
 
 // Methods
