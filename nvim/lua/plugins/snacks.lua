@@ -4,6 +4,21 @@ return {
 	priority = 1000,
 	lazy = false,
 	---@type snacks.Config
+	config = function(_, opts)
+		require("snacks").setup(opts)
+		-- Wrap vim.ui.select immediately after snacks sets it, to handle
+		-- plugins that call it with 2 args (items, on_choice) or no callback
+		local _select = vim.ui.select
+		vim.ui.select = function(items, o, on_choice)
+			if type(o) == "function" then
+				on_choice, o = o, {}
+			end
+			if type(on_choice) ~= "function" then
+				on_choice = function() end
+			end
+			return _select(items, o, on_choice)
+		end
+	end,
 	opts = {
 		bigfile = { enabled = true },
 		bufdelete = { enabled = true },
@@ -18,7 +33,7 @@ return {
 			enabled = true,
 			timeout = 3000,
 		},
-		picker = { enabled = false },
+		picker = { enabled = true },
 		profiler = { enabled = true },
 		quickfile = { enabled = true },
 		rename = { enabled = true },

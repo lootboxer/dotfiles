@@ -15,6 +15,7 @@ return {
 		provider = env.provider,
 		providers = env.providers or {},
 		mode = "agentic",
+		input = { provider = "snacks" },
 
 		-- nvim-tree.
 		selector = {

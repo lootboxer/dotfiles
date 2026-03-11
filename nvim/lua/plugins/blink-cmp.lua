@@ -31,10 +31,7 @@ return { -- Autocompletion
 							name = "Buffer",
 							module = "blink.cmp.sources.buffer",
 							score_offset = 100,
-							opts = {
-								max_items = 10,
-								min_keyword_length = 2,
-							},
+							opts = { },
 						},
 						lsp = {
 							name = "LSP",
@@ -145,7 +142,7 @@ return { -- Autocompletion
 		fuzzy = {
 			frecency = { enabled = true },
 			use_proximity = true,
-			sorts = { "label", "kind", "score" },
+			sorts = { "score","kind", "label" },
 			prebuilt_binaries = {
 				download = true,
 				force_version = nil,
