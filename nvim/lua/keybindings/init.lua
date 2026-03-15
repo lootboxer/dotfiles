@@ -36,4 +36,3 @@ vim.keymap.del("v", "s")
 vim.keymap.del("n", "s")
 
 require("keybindings.snacks")
-require("keybindings.vi-mongo")
