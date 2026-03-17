@@ -159,6 +159,8 @@ return { -- Autocompletion
 		ls.filetype_extend("typescript", { "javascript" })
 		ls.filetype_extend("javascriptreact", { "javascript" })
 		ls.filetype_extend("typescriptreact", { "typescript", "javascript" })
+		ls.filetype_extend("go", { "go" })
+		ls.filetype_extend("sql", { "sql" })
 
 		-- Load LuaSnip Lua-format snippets from the config snippets directory
 		require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets" })

@@ -9,7 +9,8 @@ vim.keymap.set("i", "kj", "<Esc>", { desc = "escape" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
+-- Changed from <leader>d to <leader>dd to avoid conflict with debug keybindings (<leader>d*)
+vim.keymap.set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')

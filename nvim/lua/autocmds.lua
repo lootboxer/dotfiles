@@ -14,13 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "vue",
 	callback = function()
-		-- Get treesitter parser
-		local ts_utils_ok, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
-		if not ts_utils_ok then
-			return
-		end
-
-		-- Ensure HTML injection is working
+		-- Ensure HTML injection is working in Vue templates
 		vim.treesitter.language.register("html", "vue")
 	end,
 	desc = "Register HTML language for Vue templates",

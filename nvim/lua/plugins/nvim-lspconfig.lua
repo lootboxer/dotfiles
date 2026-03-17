@@ -28,6 +28,25 @@ return {
 				map("<leader>ss", require("telescope.builtin").lsp_document_symbols, "LSP Document Symbols")
 				map("<leader>sS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "LSP Workspace Symbols")
 
+				-- Import organization
+				map("<leader>io", function()
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							only = { "source.organizeImports" },
+						},
+					})
+				end, "Organize Imports")
+
+				map("<leader>ir", function()
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							only = { "source.removeUnused" },
+						},
+					})
+				end, "Remove Unused Imports")
+
 				local function client_supports_method(client, method, bufnr)
 					if vim.fn.has("nvim-0.11") == 1 then
 						return client:supports_method(method, bufnr)
@@ -114,7 +133,44 @@ return {
 				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 			},
 			vue_ls = {},
-			gopls = {},
+			gopls = {
+				settings = {
+					gopls = {
+						gofumpt = true,
+						codelenses = {
+							gc_details = false,
+							generate = true,
+							regenerate_cgo = true,
+							run_govulncheck = true,
+							test = true,
+							tidy = true,
+							upgrade_dependency = true,
+							vendor = true,
+						},
+						hints = {
+							assignVariableTypes = true,
+							compositeLiteralFields = true,
+							compositeLiteralTypes = true,
+							constantValues = true,
+							functionTypeParameters = true,
+							parameterNames = true,
+							rangeVariableTypes = true,
+						},
+						analyses = {
+							fieldalignment = true,
+							nilness = true,
+							unusedparams = true,
+							unusedwrite = true,
+							useany = true,
+						},
+						usePlaceholders = true,
+						completeUnimported = true,
+						staticcheck = true,
+						directoryFilters = { "-.git", "-.vscode", "-.idea", "-node_modules" },
+						semanticTokens = true,
+					},
+				},
+			},
 			rust_analyzer = {},
 			lua_ls = {
 				settings = {
@@ -134,6 +190,16 @@ return {
 			cssls = {
 				filetypes = { "css", "scss", "sass" },
 			},
+			-- SQL LSP
+			sqls = {
+				settings = {
+					sqls = {
+						connections = {
+							-- Configure in project-local .sqls.yml file
+						},
+					},
+				},
+			},
 			-- Emmet LSP
 			emmet_language_server = {
 				filetypes = { "html", "css", "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
@@ -146,6 +212,7 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua",
+			"sqlfluff", -- SQL linter for Postgres development
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

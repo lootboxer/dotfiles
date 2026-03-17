@@ -18,6 +18,7 @@ return { -- Autoformat
 			-- format_on_save = { timeout_ms = 500, lsp_format = 'fallback' },
 			formatters_by_ft = {
 				lua = { "stylua" },
+				go = { "goimports" }, -- gofmt is redundant (goimports includes it)
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				javascriptreact = { "prettier" },
@@ -30,6 +31,7 @@ return { -- Autoformat
 				yaml = { "prettier" },
 				markdown = { "prettier" },
 				vue = { "prettier" },
+				sql = { "sql_formatter" },
 			},
 			formatters = {
 				prettier = {

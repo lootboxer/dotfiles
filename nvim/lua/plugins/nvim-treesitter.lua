@@ -22,6 +22,19 @@ return { -- Highlight, edit, and navigate code
 			"tsx",
 			"vue",
 			"scss",
+			-- Critical for Vue3/Postgres/Golang stack
+			"go",
+			"sql",
+			"json",
+			"yaml",
+			"toml",
+			"css",
+			-- Additional useful parsers
+			"dockerfile",
+			"gitignore",
+			"graphql",
+			"regex",
+			"comment",
 		},
 		auto_install = true,
 		highlight = {
