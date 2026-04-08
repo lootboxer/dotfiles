@@ -7,16 +7,26 @@
 --  up in which-key menus, avoiding duplicate entries since they serve the same
 -- function as the <c-/> bindings.
 --
+-- Multiple terminal instances are supported via <leader>t1–<leader>t4.
+-- Each number maps to a separate terminal identified by its id.
+--
 
 vim.keymap.set('n', '<c-/>', function()
-  Snacks.terminal()
+  Snacks.terminal(nil, { id = 1 })
 end, { desc = 'Open Terminal' })
 vim.keymap.set('t', '<c-/>', function()
-  Snacks.terminal()
+  Snacks.terminal(nil, { id = 1 })
 end, { desc = 'Close Terminal' })
 vim.keymap.set('n', '<c-_>', function()
-  Snacks.terminal()
+  Snacks.terminal(nil, { id = 1 })
 end, { desc = 'which_key_ignore' })
 vim.keymap.set('t', '<c-_>', function()
-  Snacks.terminal()
+  Snacks.terminal(nil, { id = 1 })
 end, { desc = 'which_key_ignore' })
+
+-- Numbered terminal instances
+for i = 1, 4 do
+  vim.keymap.set({ 'n', 't' }, '<leader>t' .. i, function()
+    Snacks.terminal(nil, { id = i })
+  end, { desc = 'Terminal ' .. i })
+end
