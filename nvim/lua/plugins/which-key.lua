@@ -1,18 +1,28 @@
 return {
-  'folke/which-key.nvim',
-  event = 'VeryLazy',
+  "folke/which-key.nvim",
+  event = "VeryLazy",
   opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
+    spec = {
+      { "<leader>a", group = "Avante" },
+      { "<leader>c", group = "Code" },
+      { "<leader>d", group = "Debug" },
+      { "<leader>f", group = "Find" },
+      { "<leader>g", group = "Git" },
+      { "<leader>h", group = "Harpoon" },
+      { "<leader>i", group = "Imports" },
+      { "<leader>s", group = "Search" },
+      { "<leader>sm", group = "Marks" },
+      { "<leader>t", group = "Test" },
+      { "<leader>u", group = "UI Toggle" },
+    },
   },
   keys = {
     {
-      '<leader>?',
+      "<leader>?",
       function()
-        require('which-key').show { global = false }
+        require("which-key").show { global = false }
       end,
-      desc = 'Buffer Local Keymaps (which-key)',
+      desc = "Buffer Local Keymaps (which-key)",
     },
   },
 }

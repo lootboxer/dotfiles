@@ -19,10 +19,15 @@ return {
 			require("dap-go").setup()
 
 			-- Setup JavaScript/TypeScript/Vue debugging
-			require("dap-vscode-js").setup({
-				debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter",
-				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
-			})
+			local debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter"
+			if vim.uv.fs_stat(debugger_path) then
+				require("dap-vscode-js").setup({
+					debugger_path = debugger_path,
+					adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+				})
+			else
+				vim.notify("js-debug-adapter not found. Install via Mason.", vim.log.levels.WARN)
+			end
 
 			-- Configure debugger for JavaScript/TypeScript/Vue
 			for _, language in ipairs({ "typescript", "javascript", "vue" }) do

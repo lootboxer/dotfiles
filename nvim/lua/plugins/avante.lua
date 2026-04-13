@@ -14,13 +14,8 @@ return {
 		instructions_file = "avante.md",
 		provider = env.provider,
 		providers = env.providers or {},
-		mode = "agentic",
+		mode = "legacy",
 		input = { provider = "snacks" },
-
-		-- nvim-tree.
-		selector = {
-			exclude_auto_select = { "NvimTree" },
-		},
 	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",

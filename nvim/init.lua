@@ -20,14 +20,14 @@ vim.o.mouse = "a"
 vim.o.showmode = false
 
 -- Disable swapfiles
-vim.opt.swapfile = false -- Disable .swp files
+vim.o.swapfile = false -- Disable .swp files
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+  vim.o.clipboard = "unnamedplus"
 end)
 -- vim.o.clipboard = "unnamedplus"
 
@@ -103,39 +103,9 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 --
 require("lazy").setup({
-	-- NOTE: Plugins can also be added by using a table,
-	-- with the first argument being the link and the following
-	-- keys can be used to configure plugin behavior/loading/etc.
-	--
-	-- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
-	--
-
-	-- Alternatively, use `config = function() ... end` for full control over the configuration.
-	-- If you prefer to call `setup` explicitly, use:
-	--    {
-	--        'lewis6991/gitsigns.nvim',
-	--        config = function()
-	--            require('gitsigns').setup({
-	--                -- Your gitsigns configuration here
-	--            })
-	--        end,
-	--    }
-	--
-	-- Here is a more advanced example where we pass configuration
-	-- options to `gitsigns.nvim`.
-
-	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/plugins/*.lua`
-	-- This is the easiest way to modularize your config.
 	{ import = "plugins" },
-	--
-	-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
-	-- Or use telescope!
-	-- In normal mode type `<leader>sh` then write `lazy.nvim-plugin`
-	-- you can continue same window with `<leader>sr` which resumes last telescope search
 }, {
 	ui = {
-		-- If you are using a Nerd Font: set icons to an empty table which will use the
-		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
 		icons = vim.g.have_nerd_font and {} or {
 			cmd = "⌘",
 			config = "🛠",

@@ -5,7 +5,7 @@ local i = ls.insert_node
 local fmt = require("luasnip.extras.fmt").fmt
 
 return {
-	-- Props интерфейс
+	-- Props interface
 	s(
 		"vpropsinterface",
 		fmt(
@@ -20,7 +20,7 @@ interface Props {
 		)
 	),
 
-	-- Emits тип
+	-- Emits type
 	s(
 		"vemitstype",
 		fmt(
@@ -35,13 +35,13 @@ interface Emits {
 		)
 	),
 
-	-- Ref с явным типом
+	-- Ref with explicit type
 	s(
 		"vreftype",
 		fmt([[const @# = ref<@#>(@#)@#]], { i(1, "name"), i(2, "string"), i(3, "''"), i(0) }, { delimiters = "@#" })
 	),
 
-	-- Computed с явным типом
+	-- Computed with explicit type
 	s(
 		"vcomputedtype",
 		fmt(
@@ -55,7 +55,7 @@ const @# = computed<@#>(() => {
 		)
 	),
 
-	-- Component instance ref тип
+	-- Component instance ref type
 	s(
 		"vinstancetype",
 		fmt(
@@ -67,7 +67,7 @@ const @# = ref<InstanceType<typeof @#> | null>(null)
 		)
 	),
 
-	-- Reactive тип
+	-- Reactive type
 	s(
 		"vreactivetype",
 		fmt(
@@ -83,7 +83,7 @@ const @# = reactive<@#>(@#)
 		)
 	),
 
-	-- ComposableReturn тип
+	-- ComposableReturn type
 	s(
 		"vcomposablereturn",
 		fmt(
@@ -125,7 +125,7 @@ interface Props<T = @#> {
 		)
 	),
 
-	-- Watch source тип
+	-- Watch source type
 	s(
 		"vwatchtype",
 		fmt(
@@ -139,7 +139,7 @@ watch<@#>(@#, (newValue, oldValue) => {
 		)
 	),
 
-	-- Provide/Inject ключ
+	-- Provide/Inject key
 	s(
 		"vinjectkey",
 		fmt(

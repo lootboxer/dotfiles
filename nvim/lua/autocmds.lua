@@ -1,16 +1,6 @@
--- Autocmds for better Vue support with nvim-ts-autotag
+-- Autocmds for better Vue support
 
--- Ensure nvim-ts-autotag works properly in Vue files
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "vue",
-	callback = function()
-		-- Force enable autotag for vue files
-		vim.b.ts_autotag_enabled = true
-	end,
-	desc = "Enable autotag for Vue files",
-})
-
--- Additional autocmd to ensure proper treesitter highlighting in Vue template sections
+-- Ensure proper treesitter highlighting in Vue template sections
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "vue",
 	callback = function()
@@ -19,4 +9,3 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 	desc = "Register HTML language for Vue templates",
 })
-

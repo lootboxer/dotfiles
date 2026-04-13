@@ -1,14 +1,14 @@
 return {
-  'mikew/nvim-drawer',
+  "mikew/nvim-drawer",
   opts = {},
   config = function(_, opts)
-    local drawer = require('nvim-drawer')
+    local drawer = require("nvim-drawer")
     drawer.setup(opts)
 
     drawer.create_drawer({
       nvim_tree_hack = true,
 
-      position = 'left',
+      position = "left",
       size = 40,
 
       on_vim_enter = function(event)
@@ -18,7 +18,7 @@ return {
         -- })
 
         --- Example mapping to toggle.
-        vim.keymap.set('n', '<leader>e', function()
+        vim.keymap.set("n", "<leader>e", function()
           event.instance.focus_or_toggle()
         end)
       end,
@@ -27,23 +27,23 @@ return {
       --- mappings in nvim-tree don't seem to apply when re-using a buffer in
       --- a new tab / window.
       on_did_create_buffer = function()
-        local nvim_tree_api = require('nvim-tree.api')
+        local nvim_tree_api = require("nvim-tree.api")
         nvim_tree_api.tree.open({ current_window = true })
       end,
 
       --- This gets the tree to sync when changing tabs.
       on_did_open = function()
-        local nvim_tree_api = require('nvim-tree.api')
+        local nvim_tree_api = require("nvim-tree.api")
         nvim_tree_api.tree.reload()
 
         vim.opt_local.number = false
-        vim.opt_local.signcolumn = 'no'
-        vim.opt_local.statuscolumn = ''
+        vim.opt_local.signcolumn = "no"
+        vim.opt_local.statuscolumn = ""
       end,
 
       --- Cleans up some things when closing the drawer.
       on_did_close = function()
-        local nvim_tree_api = require('nvim-tree.api')
+        local nvim_tree_api = require("nvim-tree.api")
         nvim_tree_api.tree.close()
       end,
     })

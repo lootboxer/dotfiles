@@ -3,7 +3,7 @@
 -- combination. Having both ensures the terminal toggle works consistently
 -- across different terminal emulators.
 --
--- The <c-_> bindings use desc = 'which_key_ignore' to prevent them from showing
+-- The <c-_> bindings use desc = "which_key_ignore" to prevent them from showing
 --  up in which-key menus, avoiding duplicate entries since they serve the same
 -- function as the <c-/> bindings.
 --
@@ -11,22 +11,22 @@
 -- Each number maps to a separate terminal identified by its id.
 --
 
-vim.keymap.set('n', '<c-/>', function()
+vim.keymap.set("n", "<c-/>", function()
   Snacks.terminal(nil, { id = 1 })
-end, { desc = 'Open Terminal' })
-vim.keymap.set('t', '<c-/>', function()
+end, { desc = "Open Terminal" })
+vim.keymap.set("t", "<c-/>", function()
   Snacks.terminal(nil, { id = 1 })
-end, { desc = 'Close Terminal' })
-vim.keymap.set('n', '<c-_>', function()
+end, { desc = "Close Terminal" })
+vim.keymap.set("n", "<c-_>", function()
   Snacks.terminal(nil, { id = 1 })
-end, { desc = 'which_key_ignore' })
-vim.keymap.set('t', '<c-_>', function()
+end, { desc = "which_key_ignore" })
+vim.keymap.set("t", "<c-_>", function()
   Snacks.terminal(nil, { id = 1 })
-end, { desc = 'which_key_ignore' })
+end, { desc = "which_key_ignore" })
 
 -- Numbered terminal instances
 for i = 1, 4 do
-  vim.keymap.set({ 'n', 't' }, '<leader>t' .. i, function()
+  vim.keymap.set({ "n", "t" }, "<leader>t" .. i, function()
     Snacks.terminal(nil, { id = i })
-  end, { desc = 'Terminal ' .. i })
+  end, { desc = "Terminal " .. i })
 end

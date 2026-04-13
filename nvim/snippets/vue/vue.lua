@@ -5,13 +5,13 @@ local i = ls.insert_node
 local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
 
--- Функция для получения имени файла без расширения в kebab-case
+-- Get filename without extension in kebab-case
 local function get_filename_kebab()
 	local filename = vim.fn.expand("%:t:r")
 	if filename == "" then
 		return "component-name"
 	end
-	-- Преобразуем PascalCase в kebab-case
+	-- Convert PascalCase to kebab-case
 	local kebab = filename:gsub("(%u)", function(c)
 		return "-" .. c:lower()
 	end):gsub("^%-", "")
@@ -19,7 +19,7 @@ local function get_filename_kebab()
 end
 
 return {
-	-- Простой Vue 3 компонент
+	-- Simple Vue 3 component
 	s(
 		"v3simple",
 		fmt(
@@ -51,7 +51,7 @@ return {
 		)
 	),
 
-	-- Полный Vue 3 компонент с TypeScript
+	-- Full Vue 3 component with TypeScript
 	s(
 		"v3comp",
 		fmt(
@@ -67,12 +67,12 @@ const props = withDefaults(defineProps<IProps>(), {})
 interface IEmits{}
 const emit = defineEmits<IEmits>()
 
-// Methods
-function @#(){
-	@#
-}
-
 // Lifecycle
+
+// beforeCreated life hook
+
+// ---
+
 onMounted(() => {
 	// component mounted
 })
@@ -91,12 +91,10 @@ onMounted(() => {
 </style>
 ]],
 			{
-				i(1, "myFunc"),
-				i(2, "//"),
 				f(get_filename_kebab),
-				i(3),
+				i(1),
 				f(get_filename_kebab),
-				i(4),
+				i(2),
 			},
 			{ delimiters = "@#" }
 		)

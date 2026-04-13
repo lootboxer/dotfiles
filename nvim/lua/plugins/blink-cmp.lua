@@ -22,39 +22,35 @@ return { -- Autocompletion
 		},
 		sources = {
 			default = { "lsp", "buffer", "path", "snippets" },
-			per_filetype = {
-				lua = { "lsp", "buffer", "path", "snippets" },
-				vue = { "lsp", "buffer", "path", "snippets" },
-			},
 			providers = {
-						buffer = {
-							name = "Buffer",
-							module = "blink.cmp.sources.buffer",
-							score_offset = 100,
-							opts = { },
-						},
-						lsp = {
-							name = "LSP",
-							module = "blink.cmp.sources.lsp",
-							score_offset = 90,
-						},
-						path = {
-							name = "Path",
-							module = "blink.cmp.sources.path",
-							score_offset = 80,
-							opts = {
-								trailing_slash = false,
-								label_trailing_slash = true,
-								get_cwd = function(context)
-									return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
-								end,
-								show_hidden_files_by_default = false,
-							},
-						},
-						snippets = {
-							name = "Snippets",
-							module = "blink.cmp.sources.snippets",
-							score_offset = 70,
+				buffer = {
+					name = "Buffer",
+					module = "blink.cmp.sources.buffer",
+					score_offset = 100,
+					opts = {},
+				},
+				lsp = {
+					name = "LSP",
+					module = "blink.cmp.sources.lsp",
+					score_offset = 90,
+				},
+				path = {
+					name = "Path",
+					module = "blink.cmp.sources.path",
+					score_offset = 80,
+					opts = {
+						trailing_slash = false,
+						label_trailing_slash = true,
+						get_cwd = function(context)
+							return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
+						end,
+						show_hidden_files_by_default = false,
+					},
+				},
+				snippets = {
+					name = "Snippets",
+					module = "blink.cmp.sources.snippets",
+					score_offset = 70,
 				},
 			},
 		},
@@ -155,12 +151,10 @@ return { -- Autocompletion
 		local ls = require("luasnip")
 
 		-- Extend filetypes so LuaSnip surfaces snippets across related languages
-		ls.filetype_extend("vue", { "html", "javascript", "typescript", "css" })
+		ls.filetype_extend("vue", { "html", "javascript", "typescript", "css", "scss" })
 		ls.filetype_extend("typescript", { "javascript" })
 		ls.filetype_extend("javascriptreact", { "javascript" })
 		ls.filetype_extend("typescriptreact", { "typescript", "javascript" })
-		ls.filetype_extend("go", { "go" })
-		ls.filetype_extend("sql", { "sql" })
 
 		-- Load LuaSnip Lua-format snippets from the config snippets directory
 		require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets" })

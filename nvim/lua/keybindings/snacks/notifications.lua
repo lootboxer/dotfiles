@@ -1,3 +1,3 @@
-vim.keymap.set('n', '<leader>un', function()
+vim.keymap.set("n", "<leader>un", function()
   Snacks.notifier.hide()
-end, { desc = 'Dismiss All Notifications' })
+end, { desc = "Dismiss All Notifications" })
