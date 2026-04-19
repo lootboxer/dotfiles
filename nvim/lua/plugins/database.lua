@@ -1,36 +1,55 @@
 --[[
-Database Connection Setup for Postgres:
+Database Connection Setup for vim-dadbod-ui:
 
-Option 1: Global configuration in init.lua or separate config file
-  vim.g.dbs = {
-    { name = 'dev', url = 'postgresql://user:password@localhost:5432/dbname' },
-    { name = 'staging', url = 'postgresql://user:password@staging.example.com:5432/dbname' },
-  }
+Global connections: `lua/envs/database.lua` (gitignored).
+  Copy `lua/envs/database.example.lua` → `lua/envs/database.lua` and edit.
 
-Option 2: Use environment variables
-  vim.g.dbs = {
-    { name = 'dev', url = vim.env.DATABASE_URL },
-  }
+Project-local connections: `<project-root>/.nvim/db.lua` (gitignore it per project).
+  Return `{ dbs = { { name = "...", url = "..." } } }`.
+  These are appended to the global list at nvim startup (based on CWD).
 
-Option 3: Project-local configuration (recommended for team projects)
-  Create .db_connections file in project root (add to .gitignore):
+Supported URL schemes: postgresql://, mysql://, sqlite:/path/to.db, mongodb://, ...
 
-  return {
-    { name = 'local', url = 'postgresql://localhost:5432/mydb' },
-    { name = 'dev', url = 'postgresql://dev.example.com:5432/mydb' },
-  }
-
-  Then load it conditionally:
-  local ok, connections = pcall(dofile, vim.fn.getcwd() .. '/.db_connections')
-  if ok then
-    vim.g.dbs = connections
-  end
-
-After setup, use:
+Usage:
   - <leader>db to toggle Database UI
   - <leader>df to find database buffers
-  - In DBUI: press 'o' to expand, 'S' to execute query, 'R' to rename
+  - In DBUI: 'o' to expand, 'S' to execute query, 'R' to rename
 ]]
+
+local function load_dbs()
+	local dbs = {}
+
+	local ok, env = pcall(require, "envs.database")
+	if ok and env and env.dbs then
+		vim.list_extend(dbs, env.dbs)
+	end
+
+	local project_db = vim.fn.getcwd() .. "/.nvim/db.lua"
+	if vim.fn.filereadable(project_db) == 1 then
+		local chunk, err = loadfile(project_db)
+		if chunk then
+			local proj_ok, project = pcall(chunk)
+			if proj_ok and type(project) == "table" and project.dbs then
+				vim.list_extend(dbs, project.dbs)
+			elseif not proj_ok then
+				vim.notify("db.lua load error: " .. tostring(project), vim.log.levels.WARN)
+			end
+		else
+			vim.notify("db.lua parse error: " .. tostring(err), vim.log.levels.WARN)
+		end
+	end
+
+	vim.g.dbs = dbs
+end
+
+load_dbs()
+
+vim.api.nvim_create_autocmd("DirChanged", {
+	group = vim.api.nvim_create_augroup("dbui-project-dbs", { clear = true }),
+	callback = load_dbs,
+})
+
+vim.api.nvim_create_user_command("DBReload", load_dbs, { desc = "Reload vim.g.dbs from envs + project" })
 
 return {
 	{
@@ -56,4 +75,3 @@ return {
 		},
 	},
 }
-
